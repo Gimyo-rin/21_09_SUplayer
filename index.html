@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Steven Universe ASMR Player</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Press+Start+2P&display=swap" rel="stylesheet">
+
+	<style type="text/css">
+		body{
+			background-color: black;
+			margin: 50px; text-align: center;}
+		h5{color: white; font-family: 'Open Sans', sans-serif;
+			letter-spacing: 3px;}
+		#container{display: flex; text-align: center; justify-content: center;}
+		.but{
+			color: white;
+			padding: 20px;
+			text-align: center;
+			font-size: 1em;
+			margin: 60px 20px;
+			cursor: pointer;
+			border-radius: 50%;
+			box-shadow: 0 6px #555;
+			font-family: 'Press Start 2P', cursive;
+		}
+		.but:active {
+			  box-shadow: 0 2px #333;
+			  transform: translateY(4px);}
+		#pinkBut{
+			background-color: #e26281;}
+		#mintBut{
+			background-color: #67beba;}
+		#blueBut{
+			background-color: #4b5faa;}
+		#stopBut{
+			background-color: #dbd9c3;}
+
+		.slidecontainer {width: 25%; margin: 0 auto; justify-content: center; align-items: center;}
+		.slider {
+		  -webkit-appearance: none;
+		  width: 100%;
+		  height: 10px;
+		  border-radius: 5px;
+		  background: #d3d3d3;
+		  outline: none;
+		  opacity: 0.7;
+		  -webkit-transition: .2s;
+		  transition: opacity .2s;
+		}
+
+		.slider:hover {
+		  opacity: 1;
+		}
+
+		.slider::-webkit-slider-thumb {
+		  -webkit-appearance: none;
+		  appearance: none;
+		  width: 80px;
+		  height: 110px;
+		  border: 0;
+		  background: url('joy.png');
+		  background-size: cover;
+		  background-repeat: no-repeat;
+		  cursor: pointer;
+		}
+
+		.slider::-moz-range-thumb {
+		  width: 80px;
+		  height: 110px;
+		  border: 0;
+		  background: url('joy.png');
+  		  background-size: cover;
+		  background-repeat: no-repeat;
+		  cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<img id="logo" src="logo.gif">
+	<h5>Choose your character and control with joystick.</h5>
+
+	<div id="container">
+		<div>
+		<button id="pinkBut" class="but">pink</button>
+		<audio id="pinkSnd" src="pink.mp3"></audio>
+		</div>
+
+		<div>
+		<button id="mintBut" class="but">mint</button>
+		<audio id="mintSnd" src="mint.mp3"></audio>
+		</div>
+
+		<div>
+		<button id="blueBut" class="but">blue</button>
+		<audio id="blueSnd" src="blue.mp3"></audio>
+		</div>
+
+		<button id="stopBut" class="but">stop</button>
+	</div>
+	<div class="slidecontainer">
+		<input id="vol" class="slider" type="range" max="80" min="0">
+	</div>
+
+		<script type="text/javascript">
+			vol.value = 80;
+			vol.oninput = function(){
+				pinkSnd.volume = vol.value / 100;
+				mintSnd.volume = vol.value / 100;
+				blueSnd.volume = vol.value / 100;
+			}
+			var state = logo;
+
+			pinkBut.onclick = function(){
+				pinkSnd.play();
+				if(logo){
+				logo.src = "pink.gif";
+				state = pink;}
+			}
+			mintBut.onclick = function(){
+				mintSnd.play();
+				if(logo){
+				logo.src = "mint.gif";
+				state = mint;}
+
+			}
+			blueBut.onclick = function(){
+				blueSnd.play();
+				if(logo){
+				logo.src = "blue.gif";
+				state = blue;}
+
+			}	
+			stopBut.onclick = function(){
+				pinkSnd.pause();
+				mintSnd.pause();
+				blueSnd.pause();
+				if(!state){
+				logo.src = "logo.gif";
+				state = logo;}
+				else{
+				logo.src = "logo.gif";
+				state = logo;}
+			}
+		</script>
+	</div>
+</body>
+</html>
